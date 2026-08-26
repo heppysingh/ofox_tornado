@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       MANIFEST_BRANCH:
-        description: 'OrangeFox Manifest Branch (e.g. 12.1, 11.0, 14.1)'
+        description: 'OrangeFox Manifest Branch (e.g. 12.1, 14.1, 11.0)'
         required: true
         default: '12.1'
         type: choice
@@ -88,7 +88,7 @@ jobs:
       - name: Show Build Output
         if: always()
         run: |
-          find /tmp/fox/out/target/product/tornado -maxdepth 2 -type f
+          find /tmp/fox/out/target/product/tornado -maxdepth 2 -type f || true
 
       - name: Fix Permissions
         if: always()

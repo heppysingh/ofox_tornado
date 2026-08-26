@@ -59,9 +59,3 @@ export FOX_USE_GREP_BINARY=1
 export FOX_USE_XZ_UTILS=1
 export FOX_USE_ZSTD_BINARY=1
 export FOX_USE_LZ4_BINARY=1
-
-# Add lunch combos
-add_lunch_combo fox_tornado-eng 2>/dev/null || true
-add_lunch_combo orangefox_tornado-eng 2>/dev/null || true
-add_lunch_combo omni_tornado-eng 2>/dev/null || true
-add_lunch_combo twrp_tornado-eng 2>/dev/null || true
