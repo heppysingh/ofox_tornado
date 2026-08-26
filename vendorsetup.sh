@@ -24,6 +24,7 @@ export OF_NO_SPLASH_CHANGE=1
 # Size Optimization & Ramdisk Compression
 export OF_USE_LZMA_COMPRESSION=1
 export FOX_REMOVE_AAPT=1
+export FOX_EXCLUDE_NANO_EDITOR=1
 export FOX_COMPRESS_EXECUTABLES=1
 
 # Display, Notch & UI Customization (720x1640 / 720x1600 notch)
@@ -53,14 +54,3 @@ export OF_FBE_METADATA_MOUNT_IGNORE=1
 export OF_ENABLE_LPTOOLS=1
 export OF_ENABLE_ALL_PARTITION_TOOLS=1
 export OF_QUICK_BACKUP_LIST="/boot;/data;/super;"
-
-# Binaries & Shell Utilities
-export FOX_USE_BASH_SHELL=1
-export FOX_ASH_IS_BASH=1
-export FOX_USE_NANO_EDITOR=1
-export FOX_USE_TAR_BINARY=1
-export FOX_USE_SED_BINARY=1
-export FOX_USE_GREP_BINARY=1
-export FOX_USE_XZ_UTILS=1
-export FOX_USE_ZSTD_BINARY=1
-export FOX_USE_LZ4_BINARY=1
