@@ -1,7 +1,27 @@
-name: Build TWRP
+name: Build OrangeFox Recovery
 
 on:
   workflow_dispatch:
+    inputs:
+      MANIFEST_BRANCH:
+        description: 'OrangeFox Manifest Branch'
+        required: true
+        default: 'fox_12.1'
+        type: choice
+        options:
+          - 'fox_12.1'
+          - 'fox_11.0'
+          - 'fox_14.1'
+      BUILD_TARGET:
+        description: 'Build Target'
+        required: true
+        default: 'fox_tornado-eng'
+        type: choice
+        options:
+          - 'fox_tornado-eng'
+          - 'orangefox_tornado-eng'
+          - 'omni_tornado-eng'
+          - 'twrp_tornado-eng'
 
 jobs:
   build:
@@ -29,7 +49,7 @@ jobs:
             lib32z1-dev libxml2-utils xsltproc unzip \
             python3 rsync bc gperf libssl-dev \
             libncurses5-dev libncursesw5-dev \
-            lz4 cpio
+            lz4 cpio liblzma-dev optipng
 
       - name: Install repo
         run: |
@@ -38,51 +58,52 @@ jobs:
           chmod +x ~/.local/bin/repo
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Initialize TWRP Source
+      - name: Initialize OrangeFox Source
         run: |
-          mkdir -p /tmp/twrp
-          cd /tmp/twrp
-          repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
-          repo sync -c --no-clone-bundle --no-tags -j2
+          mkdir -p /tmp/fox
+          cd /tmp/fox
+          git config --global user.name "OrangeFox Builder"
+          git config --global user.email "builder@orangefox.tech"
+          repo init -u https://gitlab.com/OrangeFox/manifest.git -b ${{ github.event.inputs.MANIFEST_BRANCH || 'fox_12.1' }} --depth=1
+          repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
 
       - name: Copy Device Tree
         run: |
-          mkdir -p /tmp/twrp/device/xiaomi/tornado
+          mkdir -p /tmp/fox/device/xiaomi/tornado
           rsync -a \
             --exclude=.git \
             --exclude=.github \
-            ./ /tmp/twrp/device/xiaomi/tornado/
+            ./ /tmp/fox/device/xiaomi/tornado/
 
-      - name: Remove vendorsetup.sh
+      - name: Build OrangeFox Recovery
         run: |
-          rm -f /tmp/twrp/device/xiaomi/tornado/vendorsetup.sh || true
-
-      - name: Build Recovery
-        run: |
-          cd /tmp/twrp
+          cd /tmp/fox
           source build/envsetup.sh
-          lunch twrp_tornado-eng
+          lunch ${{ github.event.inputs.BUILD_TARGET || 'fox_tornado-eng' }}
           mka vendorbootimage || mka recoveryimage || mka bootimage
 
       - name: Show Build Output
         if: always()
         run: |
-          find /tmp/twrp/out/target/product -type f
+          find /tmp/fox/out/target/product/tornado -maxdepth 2 -type f
 
       - name: Fix Permissions
         if: always()
         run: |
-          sudo chown -R runner:runner /tmp/twrp/out || true
-          sudo chmod -R a+rX /tmp/twrp/out || true
+          sudo chown -R runner:runner /tmp/fox/out || true
+          sudo chmod -R a+rX /tmp/fox/out || true
 
       - name: Upload Artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: twrp-tornado
+          name: OrangeFox-tornado
           if-no-files-found: warn
           path: |
-            /tmp/twrp/out/target/product/tornado/vendor_boot.img
-            /tmp/twrp/out/target/product/tornado/vendorboot.img
-            /tmp/twrp/out/target/product/tornado/boot.img
-            /tmp/twrp/out/target/product/tornado/recovery.img
+            /tmp/fox/out/target/product/tornado/OrangeFox*.zip
+            /tmp/fox/out/target/product/tornado/OrangeFox*.img
+            /tmp/fox/out/target/product/tornado/vendor_boot.img
+            /tmp/fox/out/target/product/tornado/vendorboot.img
+            /tmp/fox/out/target/product/tornado/vendor_ramdisk_recovery.cpio
+            /tmp/fox/out/target/product/tornado/recovery.img
+            /tmp/fox/out/target/product/tornado/boot.img

@@ -1,13 +1,17 @@
+#
 # Copyright (C) 2017-2023 The Android Open Source Project
 # Copyright (C) 2014-2023 The Team Win LLC
+# Copyright (C) 2024-2026 The OrangeFox Recovery Project
+#
 # SPDX-License-Identifier: Apache-2.0
+#
 
 DEVICE_PATH := device/xiaomi/tornado
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
-# Build Hack
+# Build Hacks
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_NINJA_USES_ENV_VARS += RTIC_MPGEN
@@ -34,10 +38,8 @@ ENABLE_SCHEDBOOST := true
 TARGET_IS_64_BIT := true
 TARGET_RECOVERY_NO_APEX := true
 
-# Assertation
+# Assertions & Board Name
 TARGET_OTA_ASSERT_DEVICE := tornado
-
-# Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := tornado
 TARGET_NO_BOOTLOADER := true
 TARGET_USES_UEFI := true
@@ -86,7 +88,7 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 BOARD_FLASH_BLOCK_SIZE := 262144
 BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
 
-# Dynamic Partition
+# Dynamic Partitions
 BOARD_SUPER_PARTITION_SIZE := 9126805504
 BOARD_SUPER_PARTITION_GROUPS := main
 BOARD_MAIN_SIZE := 9122611200 # (BOARD_SUPER_PARTITION_SIZE - 4194304) 4MiB
@@ -106,7 +108,7 @@ BOARD_ROOT_EXTRA_FOLDERS += metadata cust
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
-# Properties
+# System Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Init
@@ -126,27 +128,24 @@ BOARD_USES_GENERIC_KERNEL_IMAGE := true
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 
-# Crypto
+# Crypto & Security
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 BOARD_USES_METADATA_PARTITION := true
-#TW_CRYPTO_USE_SYSTEM_VOLD := true
-#TW_CRYPTO_SYSTEM_VOLD_MOUNT := vendor
-#TW_CRYPTO_SYSTEM_VOLD_DEBUG := true
 
 # Mediatek flags
 BOARD_USES_MTK_HARDWARE := true
 BOARD_HAS_MTK_HARDWARE := true
 
-# Encryption
+# Encryption & Platform metadata
 PLATFORM_VERSION := 13
 PLATFORM_VERSION_LAST_STABLE := 13
 PLATFORM_SECURITY_PATCH := 2025-10-01
 BOOT_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
-# TWRP Configuration
+# Display & Hardware controls
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 RECOVERY_SDCARD_ON_DATA := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
@@ -155,23 +154,21 @@ TW_DEFAULT_BRIGHTNESS := 900
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone0/temp"
 TW_EXCLUDE_APEX := true
-
 TW_BACKUP_EXCLUSIONS := /data/fonts/files
 
-# For USB OTG
+# USB OTG
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file
 
-# Filesystem tools
+# Filesystem & Partition tools
 TW_INCLUDE_NTFS_3G := true
 TARGET_USES_MKE2FS := true
+TW_INCLUDE_LPDUMP := true
+TW_INCLUDE_LPTOOLS := true
+TW_INCLUDE_PYTHON := true
+TW_INCLUDE_RESETPROP := true
 
-# Display
-TW_NO_SCREEN_BLANK := true
-TW_INCLUDE_SCREENSHOT := true
-TW_SCREENSHOT_PATH := /sdcard/Pictures/Screenshots
-
-# UI
+# UI & Framebuffer
 TW_THEME := portrait_hdpi
 TW_FRAMERATE := 60
 TW_STATUS_ICONS_ALIGN := center
@@ -179,22 +176,75 @@ TW_TIME_ZONE_GUIDE := "IST-5:30"
 TW_CUSTOM_CPU_POS := 50
 TW_CUSTOM_CLOCK_POS := 300
 TW_CUSTOM_BATTERY_POS := 800
+TW_NO_SCREEN_BLANK := true
+TW_INCLUDE_SCREENSHOT := true
+TW_SCREENSHOT_PATH := /sdcard/Pictures/Screenshots
 
-# TWRP binaries tools
-TW_EXCLUDE_NANO := true
-TW_INCLUDE_LPDUMP := true
-TW_INCLUDE_LPTOOLS := true
-TW_INCLUDE_PYTHON := true
-TW_INCLUDE_RESETPROP := true
-
-# Debug
+# Debug & Logging
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
-# Haptics
+# Haptics & Modules
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
-
-# Use legacy code for battery readout
 TW_USE_LEGACY_BATTERY_SERVICES := true
 TW_LOAD_VENDOR_BOOT_MODULES := true
 TW_DEVICE_VERSION := @heppysingh
+
+# -----------------------------------------------------------------------------
+# OrangeFox Recovery Project Build Variables
+# -----------------------------------------------------------------------------
+
+# Maintainer & Identity
+export OF_MAINTAINER := heppysingh
+export TARGET_DEVICE_ALT := tornado
+export FOX_TARGET_DEVICES := tornado
+
+# Target Architecture
+export TARGET_ARCH := arm64
+
+# Virtual A/B & vendor_boot as recovery
+export FOX_VIRTUAL_AB_DEVICE := 1
+export FOX_VENDOR_BOOT_RECOVERY := 1
+export FOX_INSTALLER_VENDOR_BOOT_RAMDISK_INSTALL := 1
+export OF_DYNAMIC_FULL_SIZE := 9126805504
+export OF_NO_REFLASH_CURRENT_ORANGEFOX := 1
+
+# Display, Notch & UI Customization (720x1640 / 720x1600 notch)
+export OF_SCREEN_H := 2400
+export OF_STATUS_H := 100
+export OF_STATUS_INDENT_LEFT := 48
+export OF_STATUS_INDENT_RIGHT := 48
+export OF_HIDE_NOTCH := 1
+export OF_CLOCK_POS := 0
+export OF_ALLOW_DISABLE_NAVBAR := 0
+export OF_USE_LOCKSCREEN_BUTTON := 1
+
+# Hardware & System Features
+export OF_USE_GREEN_LED := 0
+export OF_FLASHLIGHT_ENABLE := 1
+export OF_FL_PATH1 := "/sys/class/leds/led_torch_2"
+export OF_USE_LEGACY_BATTERY_SERVICES := 1
+export OF_FORCE_CASEFOLDING := 1
+export OF_FORCE_PREBUILT_KERNEL := 1
+export OF_NO_TREBLE_COMPATIBILITY_CHECK := 1
+export OF_PATCH_AVB20 := 1
+export OF_VAB_ORS_WIPE_DATA_IS_FORMAT := 1
+export OF_DEFAULT_TIMEZONE := "TAIST-5:30;IST"
+export OF_FBE_METADATA_MOUNT_IGNORE := 1
+export OF_USE_LZ4_COMPRESSION := 1
+
+# Partition Tools & Backups
+export OF_ENABLE_LPTOOLS := 1
+export OF_ENABLE_ALL_PARTITION_TOOLS := 1
+export OF_QUICK_BACKUP_LIST := "/boot;/data;/super;"
+
+# Binaries & Shell Utilities
+export FOX_USE_BASH_SHELL := 1
+export FOX_ASH_IS_BASH := 1
+export FOX_USE_NANO_EDITOR := 1
+export FOX_USE_TAR_BINARY := 1
+export FOX_USE_SED_BINARY := 1
+export FOX_USE_GREP_BINARY := 1
+export FOX_USE_XZ_UTILS := 1
+export FOX_USE_ZSTD_BINARY := 1
+export FOX_USE_LZ4_BINARY := 1
