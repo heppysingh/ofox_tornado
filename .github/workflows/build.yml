@@ -1,0 +1,88 @@
+name: Build TWRP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Device Tree
+        uses: actions/checkout@v4
+
+      - name: Free Disk Space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo apt-get clean
+          sudo docker system prune -af || true
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            git-core gnupg flex bison build-essential zip curl \
+            zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
+            lib32z1-dev libxml2-utils xsltproc unzip \
+            python3 rsync bc gperf libssl-dev \
+            libncurses5-dev libncursesw5-dev \
+            lz4 cpio
+
+      - name: Install repo
+        run: |
+          mkdir -p ~/.local/bin
+          curl -L https://storage.googleapis.com/git-repo-downloads/repo -o ~/.local/bin/repo
+          chmod +x ~/.local/bin/repo
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Initialize TWRP Source
+        run: |
+          mkdir -p /tmp/twrp
+          cd /tmp/twrp
+          repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
+          repo sync -c --no-clone-bundle --no-tags -j2
+
+      - name: Copy Device Tree
+        run: |
+          mkdir -p /tmp/twrp/device/xiaomi/tornado
+          rsync -a \
+            --exclude=.git \
+            --exclude=.github \
+            ./ /tmp/twrp/device/xiaomi/tornado/
+
+      - name: Remove vendorsetup.sh
+        run: |
+          rm -f /tmp/twrp/device/xiaomi/tornado/vendorsetup.sh || true
+
+      - name: Build Recovery
+        run: |
+          cd /tmp/twrp
+          source build/envsetup.sh
+          lunch twrp_tornado-eng
+          mka vendorbootimage || mka recoveryimage || mka bootimage
+
+      - name: Show Build Output
+        if: always()
+        run: |
+          find /tmp/twrp/out/target/product -type f
+
+      - name: Fix Permissions
+        if: always()
+        run: |
+          sudo chown -R runner:runner /tmp/twrp/out || true
+          sudo chmod -R a+rX /tmp/twrp/out || true
+
+      - name: Upload Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: twrp-tornado
+          if-no-files-found: warn
+          path: |
+            /tmp/twrp/out/target/product/tornado/vendor_boot.img
+            /tmp/twrp/out/target/product/tornado/vendorboot.img
+            /tmp/twrp/out/target/product/tornado/boot.img
+            /tmp/twrp/out/target/product/tornado/recovery.img
