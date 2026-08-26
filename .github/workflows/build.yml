@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       MANIFEST_BRANCH:
-        description: 'OrangeFox Manifest Branch'
+        description: 'OrangeFox Manifest Branch (e.g. 12.1, 11.0, 14.1)'
         required: true
-        default: 'fox_12.1'
+        default: '12.1'
         type: choice
         options:
-          - 'fox_12.1'
-          - 'fox_11.0'
-          - 'fox_14.1'
+          - '12.1'
+          - '14.1'
+          - '11.0'
       BUILD_TARGET:
         description: 'Build Target'
         required: true
@@ -47,7 +47,7 @@ jobs:
             git-core gnupg flex bison build-essential zip curl \
             zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
             lib32z1-dev libxml2-utils xsltproc unzip \
-            python3 rsync bc gperf libssl-dev \
+            python3 python-is-python3 rsync bc gperf libssl-dev \
             libncurses5-dev libncursesw5-dev \
             lz4 cpio liblzma-dev optipng
 
@@ -58,14 +58,17 @@ jobs:
           chmod +x ~/.local/bin/repo
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
-      - name: Initialize OrangeFox Source
+      - name: Sync OrangeFox Sources
         run: |
-          mkdir -p /tmp/fox
-          cd /tmp/fox
           git config --global user.name "OrangeFox Builder"
           git config --global user.email "builder@orangefox.tech"
-          repo init -u https://gitlab.com/OrangeFox/manifest.git -b ${{ github.event.inputs.MANIFEST_BRANCH || 'fox_12.1' }} --depth=1
-          repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
+          git config --global color.ui true
+
+          mkdir -p /tmp/sync_tools
+          cd /tmp/sync_tools
+          git clone https://gitlab.com/OrangeFox/sync.git
+          cd sync
+          ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH || '12.1' }} --path /tmp/fox
 
       - name: Copy Device Tree
         run: |
