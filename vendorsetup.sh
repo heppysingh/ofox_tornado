@@ -21,6 +21,11 @@ export OF_DYNAMIC_FULL_SIZE=9126805504
 export OF_NO_REFLASH_CURRENT_ORANGEFOX=1
 export OF_NO_SPLASH_CHANGE=1
 
+# Size Optimization & Ramdisk Compression
+export OF_USE_LZMA_COMPRESSION=1
+export FOX_REMOVE_AAPT=1
+export FOX_COMPRESS_EXECUTABLES=1
+
 # Display, Notch & UI Customization (720x1640 / 720x1600 notch)
 export OF_SCREEN_H=2400
 export OF_STATUS_H=100
@@ -43,7 +48,6 @@ export OF_PATCH_AVB20=1
 export OF_VAB_ORS_WIPE_DATA_IS_FORMAT=1
 export OF_DEFAULT_TIMEZONE="TAIST-5:30;IST"
 export OF_FBE_METADATA_MOUNT_IGNORE=1
-export OF_USE_LZ4_COMPRESSION=1
 
 # Partition Tools & Backups
 export OF_ENABLE_LPTOOLS=1
