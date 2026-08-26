@@ -9,9 +9,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # Inherit from vendor configuration
+$(call inherit-product-if-exists, vendor/recovery/config/common.mk)
 $(call inherit-product-if-exists, vendor/omni/config/common.mk)
 $(call inherit-product-if-exists, vendor/fox/config/common.mk)
 $(call inherit-product-if-exists, vendor/twrp/config/common.mk)
+$(call inherit-product-if-exists, vendor/orangefox/config/common.mk)
 
 # Device identifier
 BOARD_VENDOR := xiaomi

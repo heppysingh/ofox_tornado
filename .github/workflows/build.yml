@@ -81,8 +81,12 @@ jobs:
       - name: Build OrangeFox Recovery
         run: |
           cd /tmp/fox
+          set +e
           source build/envsetup.sh
+          set -e
+          echo "=== Lunching target: ${{ github.event.inputs.BUILD_TARGET || 'fox_tornado-eng' }} ==="
           lunch ${{ github.event.inputs.BUILD_TARGET || 'fox_tornado-eng' }}
+          echo "=== Starting build ==="
           mka vendorbootimage || mka recoveryimage || mka bootimage
 
       - name: Show Build Output
