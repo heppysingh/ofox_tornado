@@ -16,58 +16,15 @@ Device tree for building OrangeFox Recovery for **Redmi 15C 5G** (and variants).
 | :--- | :--- |
 | **Device** | Redmi 15C 5G / Redmi 15R 5G / Poco C85 5G |
 | **Codename** | `tornado` |
-| **SoC** | MediaTek MT6835 (Dimensity 6100+) |
+| **SoC** | MediaTek MT6835 (Dimensity 6300) |
 | **Architecture** | ARM64 (64-bit) |
 | **Display** | 720 x 1640 (20.5:9), 90Hz/120Hz IPS LCD |
 | **Storage & RAM** | UFS / eMMC, 4GB / 6GB / 8GB |
 | **Partition Scheme** | Virtual A/B (Dynamic Partitions, Boot Header v4) |
 | **Recovery Location** | `vendor_boot` partition (`vendor_boot-as-recovery`) |
-| **Shipped Android** | Android 13 / 14 |
+| **Shipped Android** | Android 15 / 16 |
 
----
 
-## How to Build OrangeFox
-
-### 1. Initialize Sync Manifest
-```bash
-mkdir -p ~/OrangeFox/fox_12.1
-cd ~/OrangeFox/fox_12.1
-repo init -u https://gitlab.com/OrangeFox/manifest.git -b fox_12.1 --depth=1
-repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
-```
-
-### 2. Clone Device Tree
-```bash
-git clone https://github.com/your-username/ofox_tornado device/xiaomi/tornado
-```
-
-### 3. Build Recovery
-```bash
-source build/envsetup.sh
-lunch fox_tornado-eng
-mka vendorbootimage
-```
-
-The output zip and `vendor_boot.img` will be in `out/target/product/tornado/`.
-
----
-
-## Flashing Instructions
-
-Since this device is a **Virtual A/B device with vendor_boot-as-recovery (Header v4)**:
-
-### Flash via Fastboot:
-```bash
-fastboot flash vendor_boot vendor_boot.img
-fastboot reboot recovery
-```
-
-### Or flash ramdisk in fastbootd:
-```bash
-fastboot reboot fastboot
-fastboot flash vendor_boot:recovery vendor_ramdisk_recovery.cpio
-fastboot reboot recovery
-```
 
 ---
 
