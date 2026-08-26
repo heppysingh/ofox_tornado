@@ -86,8 +86,10 @@ jobs:
           set -e
           echo "=== Lunching target: ${{ github.event.inputs.BUILD_TARGET || 'fox_tornado-eng' }} ==="
           lunch ${{ github.event.inputs.BUILD_TARGET || 'fox_tornado-eng' }}
-          echo "=== Starting build ==="
-          mka vendorbootimage || mka recoveryimage || mka bootimage
+          echo "=== Building vendorbootimage ==="
+          mka vendorbootimage
+          echo "=== Building OrangeFox recovery package ==="
+          mka recoveryimage
 
       - name: Show Build Output
         if: always()
