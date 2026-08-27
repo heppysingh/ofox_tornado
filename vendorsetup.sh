@@ -21,8 +21,8 @@ export OF_DYNAMIC_FULL_SIZE=9126805504
 export OF_NO_REFLASH_CURRENT_ORANGEFOX=1
 export OF_NO_SPLASH_CHANGE=1
 
-# Size Optimization & Ramdisk Compression
-export OF_USE_LZMA_COMPRESSION=1
+# Size Optimization & Ramdisk Compression (LZ4 is required for MT6835 Little Kernel)
+export OF_USE_LZ4_COMPRESSION=1
 export FOX_REMOVE_AAPT=1
 export FOX_EXCLUDE_NANO_EDITOR=1
 export FOX_COMPRESS_EXECUTABLES=1

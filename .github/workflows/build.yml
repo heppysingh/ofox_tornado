@@ -88,8 +88,6 @@ jobs:
           lunch ${{ github.event.inputs.BUILD_TARGET || 'fox_tornado-eng' }}
           echo "=== Building vendorbootimage ==="
           mka vendorbootimage
-          echo "=== Building OrangeFox recovery package ==="
-          mka recoveryimage
 
       - name: Show Build Output
         if: always()
