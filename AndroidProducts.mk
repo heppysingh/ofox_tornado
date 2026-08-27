@@ -6,14 +6,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/fox_tornado.mk \
-    $(LOCAL_DIR)/orangefox_tornado.mk \
-    $(LOCAL_DIR)/omni_tornado.mk \
-    $(LOCAL_DIR)/twrp_tornado.mk
+PRODUCT_MAKEFILES := $(LOCAL_DIR)/fox_tornado.mk
 
-COMMON_LUNCH_CHOICES := \
-    fox_tornado-eng \
-    orangefox_tornado-eng \
-    omni_tornado-eng \
-    twrp_tornado-eng
+COMMON_LUNCH_CHOICES := fox_tornado-eng 
