@@ -175,8 +175,6 @@ reset-ti-syscon.ko
 mtk_slbc.ko
 vcp_status.ko
 mtk_sync.ko
-cfg80211.ko
-mac80211.ko
 mtk-mbox-mailbox.ko
 tinysys-scmi.ko
 mtk-mminfra-debug.ko
