@@ -62,12 +62,12 @@
          TWRP will detect keymint via AIDL entries below. -->
     <hal format="aidl">
         <name>android.hardware.security.keymint</name>
-        <version>1-4</version>
+        <version>2</version>
         <fqname>IKeyMintDevice/default</fqname>
     </hal>
     <hal format="aidl">
         <name>android.hardware.security.keymint</name>
-        <version>1-4</version>
+        <version>2</version>
         <fqname>IRemotelyProvisionedComponent/default</fqname>
     </hal>
     <hal format="aidl">

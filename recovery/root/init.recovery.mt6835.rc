@@ -59,18 +59,6 @@ on post-fs
     symlink /dev/block/by-name/lk1 /dev/block/by-name/bootloader1
     symlink /dev/block/by-name/lk2 /dev/block/by-name/bootloader2
 
-
-# Start miteelog script
-on post-fs-data
-    mkdir /data/vendor/mitee
-    chmod 0755 /data/vendor/mitee
-    chown system system /data/vendor/mitee
-    mkdir /data/vendor/thh
-    chmod 0755 /data/vendor/thh
-    chown system system /data/vendor/thh
-    write /proc/bootprof "init miteelog"
-    start miteelog
-
 # Fix ro.vendor.mtk_ufs_support remove issue of recovery mode
 on property:vendor.mtk.boot0_linka=1
     symlink /dev/block/sda /dev/block/mmcblk0boot0
@@ -166,13 +154,6 @@ service vendor.vibrator-default /vendor/bin/hw/android.hardware.vibrator-service
     group root system
     setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     seclabel u:r:recovery:s0
-
-
-service miteelog /vendor/bin/miteelog
-    class core
-    user system
-    group system
-    disabled
 
 # Start services only when both manager is ready AND VINTF is patched
 on property:hwservicemanager.ready=true && property:twrp.vintf.ready=1

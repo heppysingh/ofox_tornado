@@ -110,20 +110,12 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/recovery/root/vendor/lib64/hw/gatekeeper.mitee.so:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib64/hw/gatekeeper.mitee.so \
     $(DEVICE_PATH)/recovery/root/vendor/lib64/hw/libSoftGatekeeper.so:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib64/hw/libSoftGatekeeper.so \
     $(DEVICE_PATH)/recovery/root/vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl.so:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl.so \
-    $(DEVICE_PATH)/recovery/root/system/lib64/android.hardware.security.keymint-V4-ndk.so:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib64/android.hardware.security.keymint-V4-ndk.so \
-    $(DEVICE_PATH)/recovery/root/system/lib64/android.hardware.security.keymint-V4-ndk.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/android.hardware.security.keymint-V4-ndk.so \
     $(DEVICE_PATH)/recovery/root/system/lib64/android.hardware.security.keymint-V3-ndk.so:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib64/android.hardware.security.keymint-V3-ndk.so \
     $(DEVICE_PATH)/recovery/root/system/lib64/android.hardware.security.keymint-V3-ndk.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/android.hardware.security.keymint-V3-ndk.so \
     $(DEVICE_PATH)/recovery/root/system/lib64/android.hardware.security.keymint-V2-ndk.so:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/lib64/android.hardware.security.keymint-V2-ndk.so \
     $(DEVICE_PATH)/recovery/root/system/lib64/android.hardware.security.keymint-V2-ndk.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/android.hardware.security.keymint-V2-ndk.so \
     $(DEVICE_PATH)/recovery/root/system/lib64/android.hardware.security.sharedsecret-V1-ndk.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/android.hardware.security.sharedsecret-V1-ndk.so \
     $(DEVICE_PATH)/recovery/root/system/lib64/android.hardware.security.secureclock-V1-ndk.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/android.hardware.security.secureclock-V1-ndk.so \
-    $(DEVICE_PATH)/recovery/root/system/lib64/android.hardware.security.rkp-V3-ndk.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/android.hardware.security.rkp-V3-ndk.so \
-    $(DEVICE_PATH)/recovery/root/system/lib64/libkeystore2_aaid.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libkeystore2_aaid.so \
-    $(DEVICE_PATH)/recovery/root/system/lib64/libkeystore2_apc_compat.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libkeystore2_apc_compat.so \
-    $(DEVICE_PATH)/recovery/root/system/lib64/libkeystore2_crypto.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libkeystore2_crypto.so \
-    $(DEVICE_PATH)/recovery/root/system/lib64/libkeystore-attestation-application-id.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libkeystore-attestation-application-id.so \
-    $(DEVICE_PATH)/recovery/root/system/lib64/libtinyalsa.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libtinyalsa.so \
     $(DEVICE_PATH)/recovery/root/vendor/etc/vintf/manifest/android.hardware.security.keymint-service.mitee.xml:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/vintf/manifest/android.hardware.security.keymint-service.mitee.xml \
     $(DEVICE_PATH)/recovery/root/vendor/etc/vintf/manifest/android.hardware.security.secureclock-service.mitee.xml:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/vintf/manifest/android.hardware.security.secureclock-service.mitee.xml \
     $(DEVICE_PATH)/recovery/root/vendor/etc/vintf/manifest/android.hardware.security.sharedsecret-service.mitee.xml:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/etc/vintf/manifest/android.hardware.security.sharedsecret-service.mitee.xml \
