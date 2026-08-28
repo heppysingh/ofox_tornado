@@ -185,6 +185,8 @@ reset-ti-syscon.ko
 powerhal_cpu_ctrl.ko
 mtk-cqdma.ko
 mtk_sync.ko
+cfg80211.ko
+mac80211.ko
 mtk-mbox-mailbox.ko
 tinysys-scmi.ko
 mtk-mminfra-debug.ko
