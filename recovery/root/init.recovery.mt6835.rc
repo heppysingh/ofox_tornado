@@ -34,19 +34,16 @@ on fs
 
 
 on post-fs
-    # Create keystore directory
-    mkdir /tmp/keystore 0775 root root
-    chown root root /tmp/keystore
-    
-    # debug_boot now started in 'on init'
-    
-    # Restart managers to pick up new manifest (handled by debug_boot.sh too, but safe here)
-    # restart servicemanager
-    # restart hwservicemanager
+    # Create keystore directories with system permissions
+    mkdir /tmp/misc 0775 system system
+    mkdir /tmp/misc/keystore 0775 system system
+    mkdir /tmp/keystore 0775 system system
+    chown system system /tmp/misc
+    chown system system /tmp/misc/keystore
+    chown system system /tmp/keystore
     
     start vndservicemanager
     start boot-hal-1-2
-    exec u:r:update_engine:s0 root root -- /system/bin/mtk_plpath_utils
     start mtk.plpath.utils.link
 
     on property:persist.vendor.mtk.pl_lnk=1
@@ -160,7 +157,6 @@ on property:hwservicemanager.ready=true && property:twrp.vintf.ready=1
     start tee-supplicant
     start gatekeeper-1-0
     start keymint-mitee
-    start keystore2
 
 on property:ro.crypto.state=unsupported
     stop tee-supplicant
