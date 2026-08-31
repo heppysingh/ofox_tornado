@@ -1,8 +1,8 @@
 # For MTK DRM integration:
 service tee-supplicant /vendor/bin/tee-supplicant
     class core
-    user root
-    group root system
+    user system
+    group system
     setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
     capabilities SYS_RAWIO
     disabled
