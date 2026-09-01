@@ -156,7 +156,7 @@ TW_DEFAULT_BRIGHTNESS := 900
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone0/temp"
 TW_EXCLUDE_APEX := true
-TW_BACKUP_EXCLUSIONS := /data/fonts/files
+TW_BACKUP_EXCLUSIONS := /data/fonts/files;/data/local/ubuntu-chroot
 
 # USB OTG
 TW_EXCLUDE_DEFAULT_USB_INIT := true
