@@ -90,7 +90,6 @@ on boot
     start vendor.vibrator-default
     setprop sys.usb.config adb
     write /dev/kmsg "TWRP_INIT: on boot completed"
-    exec u:r:recovery:s0 root root -- /system/bin/sh -c "sleep 2; dmesg > /persist/twrp_boot_dmesg.log 2>&1; cat /proc/kallsyms > /persist/twrp_kallsyms.log 2>&1; cat /proc/bus/input/devices > /persist/twrp_input_devices.log 2>&1"
 
 service touchfeature-hal-1-0 /vendor/bin/hw/vendor.xiaomi.hardware.touchfeature@1.0-service
     class main
