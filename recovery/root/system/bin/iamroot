@@ -1,0 +1,11 @@
+#!/system/bin/sh -x
+SLOT=$(getprop ro.boot.slot_suffix)
+[ -z "$SLOT" ] && SLOT="_$(getprop ro.boot.slot)"
+cd /tmp
+ksud boot-patch
+
+PATCHED_IMG=$(ls /tmp/kernelsu_next_patched_*.img | head -n 1)
+echo "- Flashing patched image"
+dd if="$PATCHED_IMG" of=/dev/block/by-name/init_boot$SLOT
+echo "- Done!!!"
+echo "- Now install KernelSu Next v3.3.0"
