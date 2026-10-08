@@ -1,4 +1,4 @@
-#!/system/bin/sh -x
+#!/system/bin/sh 
 SLOT=$(getprop ro.boot.slot_suffix)
 [ -z "$SLOT" ] && SLOT="_$(getprop ro.boot.slot)"
 cd /tmp
