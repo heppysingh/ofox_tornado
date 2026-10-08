@@ -2,7 +2,9 @@
 SLOT=$(getprop ro.boot.slot_suffix)
 [ -z "$SLOT" ] && SLOT="_$(getprop ro.boot.slot)"
 cd /tmp
+set -x
 ksud boot-patch
+set +x 
 
 PATCHED_IMG=$(ls /tmp/kernelsu_next_patched_*.img | head -n 1)
 echo "- Flashing patched image"
