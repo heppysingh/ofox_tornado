@@ -6,6 +6,8 @@ ksud boot-patch
 
 PATCHED_IMG=$(ls /tmp/kernelsu_next_patched_*.img | head -n 1)
 echo "- Flashing patched image"
+set -x
 dd if="$PATCHED_IMG" of=/dev/block/by-name/init_boot$SLOT
+set +x
 echo "- Done!!!"
 echo "- Now install KernelSu Next v3.3.0"
