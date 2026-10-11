@@ -225,7 +225,7 @@ OF_USE_LOCKSCREEN_BUTTON := 1
 # Hardware & System Features
 OF_USE_GREEN_LED := 0
 OF_FLASHLIGHT_ENABLE := 1
-OF_FL_PATH1 := /sys/class/leds/led_torch_2
+OF_FL_PATH1 := /sys/devices/platform/flashlights_ocp8132/torch_brightness
 OF_USE_LEGACY_BATTERY_SERVICES := 1
 OF_FORCE_CASEFOLDING := 1
 OF_FORCE_PREBUILT_KERNEL := 1
