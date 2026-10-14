@@ -47,19 +47,21 @@ on post-fs
     # restart hwservicemanager
     
     start vndservicemanager
-    start boot-hal-1-2
+    start vendor.boot-default
+    start boot-default
+    start health-service.recovery
     exec u:r:update_engine:s0 root root -- /system/bin/mtk_plpath_utils
     start mtk.plpath.utils.link
 
-    on property:persist.vendor.mtk.pl_lnk=1
+    # FSTAB_RAW2(lk2,bootloader2) of fstab.in.emmc, but without bootloader2 mount point
+    symlink /dev/block/by-name/lk1 /dev/block/by-name/bootloader1
+    symlink /dev/block/by-name/lk2 /dev/block/by-name/bootloader2
+
+on property:persist.vendor.mtk.pl_lnk=1
     symlink /dev/block/mapper/pl_a /dev/block/by-name/preloader_raw_a
     symlink /dev/block/mapper/pl_b /dev/block/by-name/preloader_raw_b
     symlink /dev/block/mapper/pl_a /dev/block/platform/bootdevice/by-name/preloader_raw_a
     symlink /dev/block/mapper/pl_b /dev/block/platform/bootdevice/by-name/preloader_raw_b
-
-# FSTAB_RAW2(lk2,bootloader2) of fstab.in.emmc, but without bootloader2 mount point
-    symlink /dev/block/by-name/lk1 /dev/block/by-name/bootloader1
-    symlink /dev/block/by-name/lk2 /dev/block/by-name/bootloader2
 
 # Fix ro.vendor.mtk_ufs_support remove issue of recovery mode
 on property:vendor.mtk.boot0_linka=1

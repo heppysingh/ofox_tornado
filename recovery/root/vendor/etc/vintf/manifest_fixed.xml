@@ -29,42 +29,23 @@
     </hal>
 
     <!-- Keymaster/KeyMint -->
-    <hal format="hidl">
-        <name>android.hardware.keymaster</name>
-        <transport>hwbinder</transport>
-        <version>4.0</version>
-        <interface>
-            <name>IKeymasterDevice</name>
-            <instance>default</instance>
-        </interface>
+    <hal format="aidl">
+        <name>android.hardware.security.keymint</name>
+        <version>2</version>
+        <fqname>IKeyMintDevice/default</fqname>
     </hal>
     <hal format="aidl">
         <name>android.hardware.security.keymint</name>
         <version>2</version>
-        <interface>
-            <name>IKeyMintDevice</name>
-            <instance>default</instance>
-        </interface>
-        <interface>
-            <name>IRemotelyProvisionedComponent</name>
-            <instance>default</instance>
-        </interface>
+        <fqname>IRemotelyProvisionedComponent/default</fqname>
     </hal>
     <hal format="aidl">
         <name>android.hardware.security.secureclock</name>
-        <version>1</version>
-        <interface>
-            <name>ISecureClock</name>
-            <instance>default</instance>
-        </interface>
+        <fqname>ISecureClock/default</fqname>
     </hal>
     <hal format="aidl">
         <name>android.hardware.security.sharedsecret</name>
-        <version>1</version>
-        <interface>
-            <name>ISharedSecret</name>
-            <instance>default</instance>
-        </interface>
+        <fqname>ISharedSecret/default</fqname>
     </hal>
 
     <!-- Gatekeeper -->
@@ -89,23 +70,16 @@
     </hal>
 
     <!-- Core Graphics/Boot HALs -->
-    <hal format="hidl">
+    <hal format="aidl">
         <name>android.hardware.boot</name>
-        <transport>hwbinder</transport>
-        <version>1.2</version>
-        <interface>
-            <name>IBootControl</name>
-            <instance>default</instance>
-        </interface>
+        <version>1</version>
+        <fqname>IBootControl/default</fqname>
     </hal>
-    <hal format="hidl">
+    <hal format="aidl">
         <name>android.hardware.health</name>
-        <transport>hwbinder</transport>
-        <version>2.1</version>
-        <interface>
-            <name>IHealth</name>
-            <instance>default</instance>
-        </interface>
+        <version>1</version>
+        <version>2</version>
+        <fqname>IHealth/default</fqname>
     </hal>
     <hal format="aidl">
         <name>android.hardware.vibrator</name>
