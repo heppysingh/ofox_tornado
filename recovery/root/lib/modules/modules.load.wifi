@@ -1,0 +1,7 @@
+/lib/modules/connadp.ko
+/lib/modules/btif_drv.ko
+/lib/modules/wmt_drv.ko
+/lib/modules/wmt_chrdev_wifi.ko
+/lib/modules/cfg80211.ko
+/lib/modules/mddp.ko
+/lib/modules/wlan_drv_gen4m_6835.ko
