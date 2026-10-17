@@ -6,13 +6,13 @@ on:
       MANIFEST_BRANCH:
         description: 'OrangeFox Manifest Branch (e.g. 12.1, 14.1, 11.0,16.0)'
         required: true
-        default: '16.0'
+        default: '16.0_wifidev'
         type: choice
         options:
           - '12.1'
           - '14.1'
           - '11.0'
-          - '16.0'
+          - '16.0_wifidev'
       BUILD_TARGET:
         description: 'Build Target'
         required: true
@@ -80,7 +80,7 @@ jobs:
           cd /tmp/sync_tools
           git clone https://gitlab.com/OrangeFox/sync.git
           cd sync
-          ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH || '16.0' }} --path /tmp/fox
+          ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH || '16.0_wifidev' }} --path /tmp/fox
 
       - name: Copy Device Tree
         run: |
