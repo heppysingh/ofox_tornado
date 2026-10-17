@@ -86,6 +86,14 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V1-ndk_platform.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so
 
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/prebuilt/kernel:kernel
+
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
+
+
+
+
 # Keymint / Gatekeeper / TEE blobs - pulled from stock tornado device
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/recovery/root/debug_boot.sh:$(TARGET_COPY_OUT_RECOVERY)/root/debug_boot.sh \
