@@ -10,7 +10,7 @@ log_msg() {
 
 exec > $LOGFILE 2>&1
 
-log_msg "--- TWRP @vbs_1 & @dream_7x DEBUG BOOT START ---"
+log_msg "--- TWRP @vbs_1 & @dream_7x  &@heppysingh DEBUG BOOT START ---"
 date
 id
 
