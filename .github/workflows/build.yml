@@ -6,13 +6,13 @@ on:
       MANIFEST_BRANCH:
         description: 'OrangeFox Manifest Branch (e.g. 12.1, 14.1, 11.0,16.0)'
         required: true
-        default: '16.0_wifidev'
+        default: '16.0'
         type: choice
         options:
           - '12.1'
           - '14.1'
           - '11.0'
-          - '16.0_wifidev'
+          - '16.0'
       BUILD_TARGET:
         description: 'Build Target'
         required: true
@@ -80,8 +80,11 @@ jobs:
           cd /tmp/sync_tools
           git clone https://gitlab.com/OrangeFox/sync.git
           cd sync
-          ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH || '16.0_wifidev' }} --path /tmp/fox
-
+          ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH || '16.0' }} --path /tmp/fox
+          cd /tmp/fox/bootable/recovery 
+          git fetch origin fox_16.0_wifidev
+          git checkout fox_16.0_wifidev
+          
       - name: Copy Device Tree
         run: |
           mkdir -p /tmp/fox/device/xiaomi/tornado
