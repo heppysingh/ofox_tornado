@@ -82,8 +82,8 @@ jobs:
           cd sync
           ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH || '16.0' }} --path /tmp/fox
           cd /tmp/fox/bootable/recovery 
-          git fetch origin fox_16.0_wifidev
-          git checkout fox_16.0_wifidev
+          git fetch https://gitlab.com/OrangeFox/bootable/recovery.git fox_16.0_wifidev
+          git checkout -B fox_16.0_wifidev FETCH_HEAD
           
       - name: Copy Device Tree
         run: |
