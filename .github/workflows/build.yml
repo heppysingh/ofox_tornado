@@ -81,8 +81,7 @@ jobs:
           git clone https://gitlab.com/OrangeFox/sync.git
           cd sync
           ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH || '16.0' }} --path /tmp/fox
-          
-          
+
       - name: Copy Device Tree
         run: |
           mkdir -p /tmp/fox/device/xiaomi/tornado
