@@ -43,14 +43,12 @@ jobs:
       - name: Cleanup
         uses: rokibhasansagar/slimhub_actions@main
 
-      - name: Create 16GB swap
-        run: |
-          sudo dd if=/dev/zero of=/mnt/swapfile bs=1M count=16384
-          sudo chmod 600 /mnt/swapfile
-          sudo mkswap /mnt/swapfile
-          sudo swapon /mnt/swapfile
-          free -h
-          
+
+      - name: Set Swap Space
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 30
+
 
       - name: Install Dependencies
         run: |
