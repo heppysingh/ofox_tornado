@@ -56,3 +56,6 @@ export OF_ENABLE_ALL_PARTITION_TOOLS=1
 export OF_QUICK_BACKUP_LIST="/boot;/data;/super;"
 export OF_ENABLE_WLAN=1
 export OF_WLAN_AP=1
+
+export OF_MAINTAINER_AVATAR="$(gettop)/device/tecno/LH8n/maintainer_avatar.png"
+cp "${OF_MAINTAINER_AVATAR}" "$(gettop)/bootable/recovery/gui/theme/portrait_hdpi/images/Default/About/maintainer.png"
