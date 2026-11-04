@@ -250,3 +250,4 @@ OF_QUICK_BACKUP_LIST := /boot;/data;/super;
 OF_ENABLE_WLAN := 1
 OF_WLAN_AP := 1
 TW_LOAD_VENDOR_MODULES := "connadp.ko connfem.ko btif_drv.ko wmt_drv.ko wmt_chrdev_wifi.ko mddp.ko wlan_drv_gen4m_6835.ko"
+RECOVERY_LIBRARY_SOURCE_FILES += $(TARGET_OUT_SHARED_LIBRARIES)/libnetutils.so
