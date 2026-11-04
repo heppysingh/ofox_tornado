@@ -16,8 +16,11 @@ on init
     
     # Start debug_boot IMMEDIATELY to force permissive and setup paths early
     start debug_boot
-    mkdir /tmp/recovery 0770 root root
-    mkdir /tmp/recovery/sockets 0770 root root
+    mkdir /tmp/recovery 0775 root wifi
+    mkdir /tmp/recovery/sockets 0770 wifi wifi
+    chmod 0755 /vendor/bin/wmt_loader
+    chmod 0755 /vendor/bin/wmt_launcher
+    chmod 0755 /vendor/bin/wlan_assistant
 
 # For vibrator
     write /sys/class/leds/vibrator/trigger "transient"
@@ -121,18 +124,27 @@ service wmt_launcher /vendor/bin/wmt_launcher -p /vendor/firmware/ -o 1
     seclabel u:r:recovery:s0
 
 on property:sys.fox.wlan.up=1
-    mkdir /tmp/recovery 0770 root root
+    mkdir /tmp/recovery 0775 root wifi
+    chown root wifi /tmp/recovery
+    chmod 0775 /tmp/recovery
     mkdir /tmp/recovery/sockets 0770 wifi wifi
+    chown wifi wifi /tmp/recovery/sockets
+    chmod 0770 /tmp/recovery/sockets
     copy /system/etc/wifi/wpa_supplicant.conf /tmp/recovery/wpa_supplicant.conf
+    chown wifi wifi /tmp/recovery/wpa_supplicant.conf
     chmod 0660 /tmp/recovery/wpa_supplicant.conf
     start wmt_loader
     start wmt_launcher
+    wait_for_prop vendor.connsys.driver.ready yes
+    start wlan_assistant
     write /dev/wmtWifi 1
     wait /sys/class/net/wlan0 5
     exec u:r:recovery:s0 root root -- /system/bin/ifconfig wlan0 up
     start wpa_supplicant
     setprop sys.fox.wlan.up 0
 
+on property:vendor.connsys.driver.ready=yes
+    start wlan_assistant
 
 
 service wpa_supplicant /system/bin/wpa_supplicant \
@@ -145,6 +157,14 @@ service wpa_supplicant /system/bin/wpa_supplicant \
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
+    seclabel u:r:recovery:s0
+
+service wlan_assistant /vendor/bin/wlan_assistant
+    class main
+    user wifi
+    group root system gps inet wifi
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
+    disabled
     seclabel u:r:recovery:s0
 
 
