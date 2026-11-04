@@ -7,6 +7,8 @@ on init
     mkdir /mnt/vendor 0755 root root
     mkdir /mnt/vendor/persist 0700 root root
     mount ext4 /dev/block/by-name/persist /mnt/vendor/persist
+    mkdir /mnt/vendor/nvdata 0771 root system
+    mount ext4 /dev/block/by-name/nvdata /mnt/vendor/nvdata
     symlink /mnt/vendor/persist /persist
     mkdir /persist/OFRP
     export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
