@@ -1,8 +1,10 @@
 # Soft dependencies extracted from modules themselves.
-softdep mali_kbase_mt6835 pre: memory_group_manager
 softdep xm_smart_chg lc charger
+softdep mtk_afe_external post: mediatek-drm
 softdep mt6835_dcm pre:mtk_dcm.ko
-softdep mtk_sec_heap pre: apusys
-softdep gf_fingerprint pre:mtk_spi
-softdep sil_fingerprint pre:gf_fingerprint
-softdep sspm_v3 pre: tinysys-scmi.ko
+softdep clkbuf pre: mt6685-core
+softdep clkbuf pre: mt6687-core
+softdep clkbuf pre: mt6397
+softdep mtk_dvfsrc post: mtk-dvfsrc-regulator
+softdep mtk_dvfsrc post: mtk-dvfsrc-devfreq
+softdep mtk_dvfsrc post: mtk-emi

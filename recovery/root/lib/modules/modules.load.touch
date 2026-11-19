@@ -1,8 +1,3 @@
-/lib/modules/mtk-mbox.ko
-/lib/modules/mtk_rpmsg_mbox.ko
-/lib/modules/mtk_tinysys_ipi.ko
-/lib/modules/mtk-afe-external.ko
-/lib/modules/scp.ko
 /lib/modules/lct_tp.ko
 /lib/modules/xiaomi_tp.ko
 /lib/modules/nt36528a_spi.ko
@@ -15,6 +10,3 @@
 /lib/modules/board_temp.ko
 /lib/modules/thermal-generic-adc.ko
 /lib/modules/thermal_trace.ko
-/lib/modules/flashlight.ko
-/lib/modules/lm3643.ko
-
