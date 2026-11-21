@@ -85,7 +85,6 @@ on boot
     chmod 0664 /sys/class/touch/tp_dev/fod_status
 
     # Load Touch modules via isolated service after core modules are stable
-    start load-touch-modules
     start health-hal-2-1
     start vendor.vibrator-default
     setprop sys.usb.config adb
