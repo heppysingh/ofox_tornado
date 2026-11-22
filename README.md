@@ -1,5 +1,7 @@
 # OrangeFox Recovery Project for Redmi 15C 5G (tornado)
 
+# ⚠️ Warning for those who might use this tree
+# the vendor_boot.img got as output is not directly flahshable,either install it using zip with stock vendor_boot flashed or pack stock vendor_ramdisk_.cpio using magiskboot 
 Device tree for building OrangeFox Recovery for **Redmi 15C 5G** (and variants).
 
 ```
