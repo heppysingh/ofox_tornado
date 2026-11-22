@@ -126,7 +126,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/377ee4e8-af0e-474f-a9d636a9268fe85c.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/377ee4e8-af0e-474f-a9d636a9268fe85c.ta \
     $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/3d08821c-33a6-11e6-a1fa089e01c83aa2.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/3d08821c-33a6-11e6-a1fa089e01c83aa2.ta \
     $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/4d573443-6a56-4272-ac6f2425af9ef9bb.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/4d573443-6a56-4272-ac6f2425af9ef9bb.ta \
-    $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/511ead0a-0000-0000-0000000000000000.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/511ead0a-0000-0000-0000000000000000.ta \
     $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/59a4867c-9fe5-f7c2-b409a46bae6ff73e.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/59a4867c-9fe5-f7c2-b409a46bae6ff73e.ta \
     $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/655a4b46-cd77-11ea-aafbf382a6988e7b.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/655a4b46-cd77-11ea-aafbf382a6988e7b.ta \
     $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/68bcd09d-4101-4c0a-9552ed0af9ae16b2.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/68bcd09d-4101-4c0a-9552ed0af9ae16b2.ta \
@@ -137,7 +136,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/dba51a17-0563-11e7-93b16fa7b0071a51.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/dba51a17-0563-11e7-93b16fa7b0071a51.ta \
     $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/e5140b33-76fa-4c63-ab18062caab2fb5c.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/e5140b33-76fa-4c63-ab18062caab2fb5c.ta \
     $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/e97c270e-a5c4-4c58-bcd3384a2fa2539e.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/e97c270e-a5c4-4c58-bcd3384a2fa2539e.ta \
-    $(DEVICE_PATH)/recovery/root/vendor/mitee/ta/f13010e0-2ae1-11e5-896a0002a5d5c51d.ta:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/mitee/ta/f13010e0-2ae1-11e5-896a0002a5d5c51d.ta
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
