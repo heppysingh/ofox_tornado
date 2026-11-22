@@ -5,10 +5,3 @@ on boot
     insmod /lkms/nt36528a_spi.ko
     insmod /lkms/td4160_spi.ko
     insmod /lkms/focaltech_spi.ko
-    insmod /lkms/thermal_interface.ko
-    insmod /lkms/soc_temp_lvts.ko
-    insmod /lkms/mi_thermal_interface.ko
-    insmod /lkms/pmic_temp.ko
-    insmod /lkms/board_temp.ko
-    insmod /lkms/thermal-generic-adc.ko
-    insmod /lkms/thermal_trace.ko
