@@ -55,3 +55,5 @@ export OF_ENABLE_LPTOOLS=1
 export OF_ENABLE_ALL_PARTITION_TOOLS=1
 export OF_QUICK_BACKUP_LIST="/boot;/data;/super;"
 export FOX_DRASTIC_SIZE_REDUCTION=1
+export OF_MAINTAINER_AVATAR="$(gettop)/device/xiaomi/tornado/maintainer_avatar.png"
+cp "${OF_MAINTAINER_AVATAR}" "$(gettop)/bootable/recovery/gui/theme/portrait_hdpi/images/Default/About/maintainer.png"
