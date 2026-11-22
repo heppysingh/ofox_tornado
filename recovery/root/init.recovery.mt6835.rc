@@ -1,4 +1,5 @@
 import /tee-supplicant.rc
+import /init.recovery.touch.rc
 
 on init
     # Create a more standard /dev/block layout for our scripts
